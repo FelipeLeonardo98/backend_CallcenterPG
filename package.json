@@ -1,0 +1,27 @@
+{
+  "name": "backendCallcenterPG",
+  "version": "1.0.0",
+  "description": "An application created for help me and my squad in my tasks at work - API REST: Node.js, MongoDB Atlas, tests at Postman and deploy at Heroku",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FelipeLeonardo98/backend_CallcenterPG.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FelipeLeonardo98/backend_CallcenterPG/issues"
+  },
+  "homepage": "https://github.com/FelipeLeonardo98/backend_CallcenterPG#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.11.13",
+    "nodemon": "^2.0.7"
+  }
+}
