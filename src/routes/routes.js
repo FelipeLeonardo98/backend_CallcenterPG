@@ -4,10 +4,9 @@ const MonitorangController = require('../controllers/MonitorangController');
 
 
 router.post('/insert', MonitorangController.Insert);
-
-router.post('/cadastrar', MonitorangController.Cadastrar);
-
-
-
+router.get('/all', MonitorangController.All);
+router.post('/delete', MonitorangController.Delete);
+router.get('/categories', MonitorangController.Categories);
+router.post('/bycategory', MonitorangController.SearchCategory);
 
 module.exports = router;

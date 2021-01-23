@@ -14,6 +14,7 @@ const Monitorang = mongoose.Schema(
     }
 },
  {
+     // automatic timestamps action
     timestamps: true,
 }
 

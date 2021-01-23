@@ -1,31 +1,66 @@
 const mongoose = require('mongoose');
-const status = require('http-status');
-const { NOT_FOUND } = require('http-status');
-
+// add model
 require('../models/Monitorang');
 const Monitorang = mongoose.model('monitorang');
+const status = require('http-status');
+const { NOT_FOUND } = require('http-status');
+//const { catch } = require('../database/database');
+//const { catch } = require('../database/database');
 
+// Insert
 exports.Insert = async (req, res) => {
     try{
-        const insertMonitorang = await  Monitorang.create(req.body);
-        return res.json({
-            insertMonitorang
-        })
+        const newMonitorang = await  Monitorang.create(req.body);
+        return res.json({newMonitorang});
     }catch(error){
         return res.status(400).json({error: error.message});
     }
-    
 };
 
-exports.Cadastrar = (req, res) => {
-    const artigo = Monitorang.create(req.body, (error) => {
-        if (error) return res.status(400).json({
-            error: true,
-            message: "Erro: artigo não foi cadastrado. Erro: " + error
-        })
-        return res.status(200).json({
-            error: false,
-            message: "Artigo foi cadastrado com sucesso!"
-        })
-    })
-}
+// Find All
+exports.All = async (req, res) => {
+    try{
+        const allMonitorangs = await Monitorang.find({});
+        return res.json(allMonitorangs);
+    }catch(error){
+        return res.status(400).json({error: error.message});
+    }
+};
+
+// select categories
+exports.Categories = async (req,res)=>{
+    try{
+       // const onlyCategories = await Monitorang.find({}).select({"category": 1, "_id": 0});
+       const onlyCategories = await Monitorang.find({}).distinct("category");
+        return res.json(onlyCategories);
+    }catch(error){
+        return res.status(400).json({error: error.message});
+    }
+};
+
+// select description by category
+exports.SearchCategory = async (req, res) => {
+    try{
+        const search = req.body.search;
+       // const returnDescriptions = await Monitorang.find({}).select({"description": 1}).
+        // where('category').equals(`${search}`);
+        const returnDescriptions = await Monitorang.find({}).select({"description": 1, "_id": 0})
+        .where('category').equals(search);
+        console.log(search);
+        return res.json(returnDescriptions);
+    }catch(error){
+        return res.status(400).json({error: error.message});
+    }
+};
+
+
+// delete
+exports.Delete = async (req, res) => {
+    try{
+        let index = req.body;
+        const deleteMonitorang = await Monitorang.deleteOne({_id: index});
+        return res.json(`Monitorang with _id ${index} was deleted`);
+    }catch(error){
+        return res.status(400).json({error: error.message});
+    }
+};

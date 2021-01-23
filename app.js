@@ -1,4 +1,4 @@
-// libs/flameworks
+// dependencies
 const express = require('express');
 const app = express();
 const cors = require('cors');
@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const connect = require ('./src/database/database.js');
 const routes = require('./src/routes/routes');
 
+// configs
 app.use(express.json());
 app.use(cors());
 app.use('/api', routes);
