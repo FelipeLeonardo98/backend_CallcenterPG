@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const connect = require ('./src/database/database.js');
 const routes = require('./src/routes/routes');
 
+
 // configs
 app.use(express.json());
 app.use(cors());

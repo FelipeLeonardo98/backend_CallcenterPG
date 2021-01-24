@@ -1,10 +1,11 @@
 // Setting ODM Mongoose 
 const mongoose = require('mongoose');
+require('dotenv/config');
 
-// Give datas of connection 
+// Give datas of connection
 async function ConnectAtlas () {
 try{
-    await mongoose.connect('mongodb+srv://leo_root:rootpass@cluster0.hscae.mongodb.net/acolhepg?retryWrites=true&w=majority', 
+    await mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.hscae.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`, 
     {
     useNewUrlParser: true,
     useUnifiedTopology: true

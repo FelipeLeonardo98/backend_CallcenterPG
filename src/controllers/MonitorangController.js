@@ -4,8 +4,8 @@ require('../models/Monitorang');
 const Monitorang = mongoose.model('monitorang');
 const status = require('http-status');
 const { NOT_FOUND } = require('http-status');
-//const { catch } = require('../database/database');
-//const { catch } = require('../database/database');
+const dbAcess = require('../database/database');
+
 
 // Insert
 exports.Insert = async (req, res) => {
@@ -46,11 +46,22 @@ exports.SearchCategory = async (req, res) => {
         // where('category').equals(`${search}`);
         const returnDescriptions = await Monitorang.find({}).select({"description": 1, "_id": 0})
         .where('category').equals(search);
-        console.log(search);
         return res.json(returnDescriptions);
     }catch(error){
         return res.status(400).json({error: error.message});
     }
+};
+
+// update
+exports.Update = async (req, res) =>{
+    try{
+        const index = req.params.index;
+        const updatedMonitorang = await Monitorang.updateOne({_id : index}, req.body);
+        return res.json(`Monitorang with _id ${index} was updated with success!`);
+    }catch(error){
+        return res.status(400).json({error: error.message});
+    }
+    
 };
 
 
