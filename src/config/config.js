@@ -1,20 +1,27 @@
 // Setting Connection String with Database
+require('dotenv/config');
+
 module.exports = {
     development: {
         database: {
             //host: 'cluster0-shard-00-02.hscae.mongodb.net',
-            host: 'mongodb+srv://leo_root:rootpass@cluster0.hscae.mongodb.net/acolhepg?retryWrites=true&w=majority',
-            port: 27017,
-            name: 'acolhepg',
-           // dialect: 'mongodb',
-            user: 'leo_root',
-            password: 'rootpass'
+            host: process.env.DB_ACCESS,
+            port: process.env.DB_PORT,
+            name: process.env.DB_NAME,
+            dialect: process.env.DB_DIALECT,
+            user: process.env.DB_USER,
+            password: process.env.DB_PASS
         }
     },
     production: {
         database: {
             host: process.env.DB_HOST,
-            host: process.env.DB_PORT
+            port: process.env.DB_PORT,
+            name: process.env.DB_NAME,
+            dialect: process.env.DB_DIALECT,
+            user: process.env.DB_USER,
+            password: process.env.DB_PASSWORD
+
         }
     }
 }
