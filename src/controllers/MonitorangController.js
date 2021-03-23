@@ -7,6 +7,7 @@ const { NOT_FOUND } = require('http-status');
 const dbAcess = require('../database/database');
 
 
+
 // Insert
 exports.Insert = async (req, res) => {
     try {
@@ -69,6 +70,17 @@ exports.Delete = async (req, res) => {
         let index = req.body;
         const deleteMonitorang = await Monitorang.deleteOne({ _id: index });
         return res.json(`Monitorang with _id ${index} was deleted`);
+    } catch (error) {
+        return res.status(400).json({ error: error.message });
+    }
+};
+
+// Select one
+exports.SelectOne = async (req, res) => {
+    try {
+        let index = req.body;
+        const selectedMonitorang = await Monitorang.findOne({ _id: index }).select({ "_id": 1, "description": 1 });
+        return res.json(selectedMonitorang);
     } catch (error) {
         return res.status(400).json({ error: error.message });
     }
