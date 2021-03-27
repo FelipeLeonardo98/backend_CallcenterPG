@@ -79,7 +79,7 @@ exports.Delete = async (req, res) => {
 exports.SelectOne = async (req, res) => {
     try {
         let index = req.body;
-        const selectedMonitorang = await Monitorang.findOne({ _id: index }).select({ "_id": 1, "description": 1 });
+        const selectedMonitorang = await Monitorang.findOne({ _id: index }).select({ "_id": 1, "category": 1, "description": 1 });
         return res.json(selectedMonitorang);
     } catch (error) {
         return res.status(400).json({ error: error.message });
