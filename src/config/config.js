@@ -4,7 +4,6 @@ require('dotenv/config');
 module.exports = {
     development: {
         database: {
-            //host: 'cluster0-shard-00-02.hscae.mongodb.net',
             host: process.env.DB_ACCESS,
             port: process.env.DB_PORT,
             name: process.env.DB_NAME,
